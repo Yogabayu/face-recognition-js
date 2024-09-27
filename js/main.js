@@ -34,7 +34,7 @@ screenResize(isScreenSmall);
 /****Event Listeiner for the video****/
 video.addEventListener("playing", () => {
   const canvas = faceapi.createCanvasFromMedia(video);
-  let container = document.querySelector(".container");
+  let container = document.querySelector(".canvas");
   container.append(canvas);
 
   const displaySize = { width: video.width, height: video.height };
@@ -57,7 +57,7 @@ video.addEventListener("playing", () => {
     /****Setting values to the DOM****/
     if (resizedDetections && Object.keys(resizedDetections).length > 0) {
       const age = resizedDetections.age;
-      const interpolatedAge = interpolateAgePredictions(age);
+      const interpolatedAge = interpolateAgePredictions(age).toFixed(0);
       const gender = resizedDetections.gender;
       const expressions = resizedDetections.expressions;
       const maxValue = Math.max(...Object.values(expressions));
